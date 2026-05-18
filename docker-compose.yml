@@ -1,0 +1,29 @@
+services:
+  master-webhook:
+    build: .
+    container_name: master_webhook
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./hooks.json:/hooks.json
+      # Volúmenes de acceso a todos tus proyectos administrados:
+      - /docker/KDash:/docker/KDash
+      - /docker/FastAPI:/docker/FastAPI
+      - /docker/ControlCenter:/docker/ControlCenter # <-- automapping ?
+    command: webhook -verbose -hooks=/hooks.json -hotreload
+    restart: unless-stopped
+    networks:
+      - shared_network
+
+  ngrok-tunnel:
+    image: ngrok/ngrok:latest
+    container_name: ngrok_master_tunnel
+    env_file:
+      - .env # <-- ngrok token
+    command: http master-webhook:9000 
+    restart: unless-stopped
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    external: true

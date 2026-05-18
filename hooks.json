@@ -1,0 +1,38 @@
+[
+  {
+    "id": "redeploy-kdash",
+    "execute-command": "/docker/KDash/deploy.sh",
+    "command-working-directory": "/docker/KDash",
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "refs/heads/main",
+        "parameter": { "source": "payload", "name": "ref" }
+      }
+    }
+  },
+  {
+    "id": "redeploy-fastapi-api",
+    "execute-command": "/docker/FastAPI/deploy.sh",
+    "command-working-directory": "/docker/FastAPI",
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "refs/heads/main",
+        "parameter": { "source": "payload", "name": "ref" }
+      }
+    }
+  },
+  {
+    "id": "redeploy-controlcenter",
+    "execute-command": "/docker/ControlCenter/deploy.sh",
+    "command-working-directory": "/docker/ControlCenter",
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "refs/heads/main",
+        "parameter": { "source": "payload", "name": "ref" }
+      }
+    }
+  }
+]
