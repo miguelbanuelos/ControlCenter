@@ -9,7 +9,8 @@ services:
       - /docker/KDash:/docker/KDash
       - /docker/FastAPI:/docker/FastAPI
       - /docker/ControlCenter:/docker/ControlCenter # <-- automapping ?
-    command: webhook -verbose -hooks=/hooks.json -hotreload
+    command: sh -c "chmod +x /docker/KDash/deploy.sh /docker/FastAPI/deploy.sh /docker/ControlCenter/deploy.sh 2>/dev/null || true && webhook -verbose -hooks=/hooks.json -hotreload"
+    #command: webhook -verbose -hooks=/hooks.json -hotreload
     restart: unless-stopped
     networks:
       - shared_network
