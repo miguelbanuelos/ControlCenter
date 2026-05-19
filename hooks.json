@@ -34,5 +34,18 @@
         "parameter": { "source": "payload", "name": "ref" }
       }
     }
+  },
+  {
+    "id": "redeploy-telemetry",
+    "execute-command": "/docker/Telemetry/deploy.sh",
+    "command-working-directory": "/docker/Telemetry",
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "refs/heads/main",
+        "parameter": { "source": "payload", "name": "ref" }
+      }
+    }
   }
+
 ]
