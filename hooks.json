@@ -58,18 +58,6 @@
         "parameter": { "source": "payload", "name": "ref" }
       }
     }
-  },
-    {
-    "id": "redeploy-mlinfra",
-    "execute-command": "/docker/MLInfra/deploy.sh",
-    "command-working-directory": "/docker/MLInfra",
-    "trigger-rule": {
-      "match": {
-        "type": "value",
-        "value": "refs/heads/main",
-        "parameter": { "source": "payload", "name": "ref" }
-      }
-    }
   }
 
 ]
