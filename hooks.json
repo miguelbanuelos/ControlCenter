@@ -46,6 +46,30 @@
         "parameter": { "source": "payload", "name": "ref" }
       }
     }
+  },
+    {
+    "id": "redeploy-timescaledb",
+    "execute-command": "/docker/timescaledb/deploy.sh",
+    "command-working-directory": "/docker/timescaledb",
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "refs/heads/main",
+        "parameter": { "source": "payload", "name": "ref" }
+      }
+    }
+  },
+    {
+    "id": "redeploy-mlinfra",
+    "execute-command": "/docker/MLInfra/deploy.sh",
+    "command-working-directory": "/docker/MLInfra",
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "refs/heads/main",
+        "parameter": { "source": "payload", "name": "ref" }
+      }
+    }
   }
 
 ]
