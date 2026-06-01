@@ -10,6 +10,7 @@ services:
       - /docker/FastAPI:/docker/FastAPI
       - /docker/Telemetry:/docker/Telemetry
       - /docker/timescaledb:/docker/timescaledb
+      - /docker/mlinfra:/docker/mlinfra
       - /docker/etl:/docker/etl
       - /docker/ControlCenter:/docker/ControlCenter # <-- automapping ?
     #command: sh -c "chmod +x /docker/KDash/deploy.sh /docker/FastAPI/deploy.sh /docker/ControlCenter/deploy.sh 2>/dev/null || true && webhook -verbose -hooks=/hooks.json -hotreload"
