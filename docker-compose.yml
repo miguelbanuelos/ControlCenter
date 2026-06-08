@@ -2,7 +2,7 @@ services:
   master-webhook:
     build: .
     container_name: master_webhook
-    env_file:               
+    env_file:
       - .env # <-- ngrok token github secret
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -26,7 +26,7 @@ services:
     container_name: ngrok_master_tunnel
     env_file:
       - .env # <-- ngrok token
-    command: http master-webhook:9000 
+    command: http master-webhook:9000
     restart: unless-stopped
     networks:
       - shared_network
