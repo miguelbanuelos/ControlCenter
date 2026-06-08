@@ -2,6 +2,8 @@ services:
   master-webhook:
     build: .
     container_name: master_webhook
+    env_file:               
+      - .env # <-- ngrok token github secret
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./hooks.json:/hooks.json
