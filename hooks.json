@@ -159,5 +159,28 @@
         }
       ]
     }
+  },
+  {
+    "id": "redeploy-elt-postgres",
+    "execute-command": "/docker/elt_postgres/deploy.sh",
+    "command-working-directory": "/docker/elt_postgres",
+    "trigger-rule": {
+      "and": [
+        {
+          "match": {
+            "type": "value",
+            "value": "refs/heads/main",
+            "parameter": { "source": "payload", "name": "ref" }
+          }
+        },
+        {
+          "match": {
+            "type": "payload-hmac-sha256",
+            "secret": "{{ getenv `GITHUB_WEBHOOK_SECRET` }}",
+            "parameter": { "source": "header", "name": "X-Hub-Signature-256" }
+          }
+        }
+      ]
+    }
   }
 ]
