@@ -17,7 +17,8 @@ services:
       - /docker/etl:/docker/etl
       - /docker/ControlCenter:/docker/ControlCenter # <-- automapping ?
     #command: sh -c "chmod +x /docker/KDash/deploy.sh /docker/FastAPI/deploy.sh /docker/ControlCenter/deploy.sh 2>/dev/null || true && webhook -verbose -hooks=/hooks.json -hotreload"
-    command: webhook -verbose -hooks=/hooks.json -hotreload -template
+    #command: webhook -verbose -hooks=/hooks.json -hotreload -template
+    command: sh -c "find /docker -name 'deploy.sh' -exec chmod +x {} + 2>/dev/null || true && webhook -verbose -hooks=/hooks.json -hotreload -template"
     restart: unless-stopped
     networks:
       - shared_network
