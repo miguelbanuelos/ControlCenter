@@ -13,6 +13,7 @@ services:
       - /docker/Telemetry:/docker/Telemetry
       - /docker/timescaledb:/docker/timescaledb
       - /docker/elt_postgres:/docker/elt_postgres
+      - /docker/airflow:/docker/airflow
       - /docker/mlinfra:/docker/mlinfra
       - /docker/etl:/docker/etl
       - /docker/ControlCenter:/docker/ControlCenter # <-- automapping ?
